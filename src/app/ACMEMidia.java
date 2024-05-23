@@ -1,9 +1,6 @@
 package app;
 
-import dados.Categoria;
-import dados.Midia;
-import dados.Midiateca;
-import dados.Video;
+import dados.*;
 
 import java.sql.SQLOutput;
 import java.util.Scanner;
@@ -18,46 +15,97 @@ public class ACMEMidia {
     }
 
     public void executa() {
-        cadastraVideo();
+        //cadastraVideo();
+        cadastraMusica();
     }
 
     public void cadastraVideo() {
-        System.out.println("Digite o código do Vídeo: ");
-        int codigo = in.nextInt();
-        in.nextLine();
+        var continuar = 0;
+        while (continuar != -1) {
+            System.out.println("Digite o código do vídeo: ");
+            int codigo = in.nextInt();
+            in.nextLine();
 
-        System.out.println("Digite o título: ");
-        String titulo = in.nextLine();
+            System.out.println("Digite o título: ");
+            String titulo = in.nextLine();
 
-        System.out.println("Digite a categoria do vídeo: ");
-        String categoriaStr = in.nextLine();
+            System.out.println("Digite a categoria do vídeo: ");
+            String categoriaStr = in.nextLine();
 
-        Categoria categoria;
-        try {
-            categoria = Categoria.fromString(categoriaStr);
-            System.out.println(categoria);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Categoria inválida!");
-            return;
+            Categoria categoria;
+            try {
+                categoria = Categoria.fromString(categoriaStr);
+                System.out.println(categoria);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Categoria inválida!");
+                return;
+            }
+
+            System.out.println("Digite o ano de lançamento do vídeo: ");
+            int ano = in.nextInt();
+            in.nextLine();
+
+            System.out.println("Digite a qualidade da imagem do vídeo: ");
+            int qualidade = in.nextInt();
+
+            Video v = new Video(codigo, titulo, ano, categoria, qualidade);
+            if (!midiateca.cadastraMidia(v)) {
+                System.out.println(" 1:Erro-video com codigo repetido: " + codigo);
+            } else {
+                System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
+                        ano + " | Categoria: " + categoria.getNome() + " | Qualidade: " + qualidade + "p.");
+            }
+            System.out.println("Caso não queira mais adicionar musíca digite -1! ");
+            continuar = in.nextInt();
+            in.nextLine();
         }
 
-        System.out.println("Digite o ano de lançamento do vídeo: ");
-        int ano = in.nextInt();
-        in.nextLine();
-
-        System.out.println("Digite a qualidade da imagem do vídeo: ");
-        int qualidade = in.nextInt();
-
-        Video v = new Video(codigo, titulo, ano, categoria, qualidade);
-        if (!midiateca.cadastraMidia(v)) {
-            System.out.println(" 1:Erro-video com codigo repetido: " + codigo);
-        } else {
-            System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
-                    ano + " | Categoria: " + categoria.getNome() + " | Qualidade: " + qualidade);
-        }
     }
 
     public void cadastraMusica() {
+        var continuar = 0;
+
+        while (continuar != -1) {
+            System.out.println("Digite o código da musíca: ");
+            int codigo = in.nextInt();
+            in.nextLine();
+            System.out.println("Digite o título: ");
+            String titulo = in.nextLine();
+
+            System.out.println("Digite a categoria da musíca: ");
+            String categoriaStr = in.nextLine();
+
+            Categoria categoria;
+            try {
+                categoria = Categoria.fromString(categoriaStr);
+                System.out.println(categoria);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Categoria inválida!");
+                return;
+            }
+
+            System.out.println("Digite o ano de lançamento da musíca: ");
+            int ano = in.nextInt();
+            in.nextLine();
+
+            System.out.println("Digite a duração da musíca: ");
+            double duracao = in.nextDouble();
+            in.nextLine();
+
+            Musica m = new Musica(codigo, titulo, ano, categoria, duracao);
+            if (!midiateca.cadastraMidia(m)) {
+                System.out.println(" 1:Erro-musíca com codigo repetido: " + codigo);
+            } else {
+                System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
+                        ano + " | Categoria: " + categoria.getNome() + " | Duração: " + duracao + " min.");
+            }
+            System.out.println("Caso não queira mais adicionar musíca digite -1! ");
+            continuar = in.nextInt();
+            in.nextLine();
+
+        }
+
+
 //: lê o código de uma mídia. Se não
 //		existir uma mídia com o código indicado, mostra a mensagem de erro: 3:codigo
 //		inexistente.
