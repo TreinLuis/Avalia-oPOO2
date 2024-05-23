@@ -32,9 +32,14 @@ public class Midiateca implements Iterador {
         return null;
     }
 
-    public ArrayList<Midia> consultaPorCategoria(Categoria categoria) {
-
-        return null;
+    public List<Midia> consultaPorCategoria(Categoria categoria) {
+		List<Midia> midias = new ArrayList<>();
+		for(Midia m : listaMidias){
+			if(m.getCategoria().equals(categoria)){
+				midias.add(m);
+			}
+		}
+        return midias;
     }
 
     public boolean removeMidia(int codigo) {

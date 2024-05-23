@@ -2,7 +2,7 @@ package app;
 
 import dados.*;
 
-import java.sql.SQLOutput;
+import java.util.List;
 import java.util.Scanner;
 
 public class ACMEMidia {
@@ -17,6 +17,7 @@ public class ACMEMidia {
     public void executa() {
         //cadastraVideo();
         cadastraMusica();
+        exibeDadosMidia();
     }
 
     public void cadastraVideo() {
@@ -72,17 +73,7 @@ public class ACMEMidia {
             System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            System.out.println("Digite a categoria da musíca: ");
-            String categoriaStr = in.nextLine();
-
-            Categoria categoria;
-            try {
-                categoria = Categoria.fromString(categoriaStr);
-                System.out.println(categoria);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Categoria inválida!");
-                return;
-            }
+            Categoria categoria = categoria();
 
             System.out.println("Digite o ano de lançamento da musíca: ");
             int ano = in.nextInt();
@@ -106,6 +97,24 @@ public class ACMEMidia {
     }
 
     public void exibeDadosMidia() {
+        List<Midia> midiasCategoria;
+
+        System.out.println("Digite a categoria da mídia par aobter os dados: ");
+        Categoria categoria = categoria();
+        midiasCategoria = midiateca.consultaPorCategoria(categoria);
+        if(midiasCategoria.isEmpty()){
+            System.out.println(" 4:Nenhuma midia encontrada.");
+        }else{
+            for(Midia m : midiasCategoria){
+                if(m instanceof Video){
+                    Video video = (Video) m;
+                    System.out.println(video.toString());
+                } else if(m instanceof Musica){
+                    Musica musica = (Musica) m;
+                    System.out.println(musica.toString());
+                }
+            }
+        }
 //	: lê a categoria de
 //		uma mídia. Se não existir uma mídia com a categoria indicada, mostra a mensagem
 //		de erro: 4:Nenhuma midia encontrada.
@@ -155,6 +164,20 @@ public class ACMEMidia {
 //		encontrada.
 //				Se existir, mostra os dados da mídia no formato: 10:codigo,titulo,ano
 
+    }
+    public Categoria categoria(){
+        System.out.println("Digite a categoria: ");
+        String categoriaStr = in.nextLine();
+
+        Categoria categoria;
+        try {
+            categoria = Categoria.fromString(categoriaStr);
+            System.out.println(categoria);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Categoria inválida!");
+            return null;
+        }
+        return categoria;
     }
 
 }

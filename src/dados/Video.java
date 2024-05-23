@@ -22,4 +22,9 @@ public class Video extends Midia {
 	public double calculaLocacao() {
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " | Qualidade: " + qualidade + "p";
+	}
 }
