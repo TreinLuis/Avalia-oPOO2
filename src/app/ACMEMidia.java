@@ -15,9 +15,16 @@ public class ACMEMidia {
     }
 
     public void executa() {
-        //cadastraVideo();
-        cadastraMusica();
-        exibeDadosMidia();
+        //cadastraVideo();//Done
+        cadastraMusica();//Done
+        exibeDadosMidia();//To_Do
+        exibeDadosCategoria();//Done
+        exibeDadosQualidade();//To_Do
+        exibeDadosDuracao();//To_Do
+        removeMidia();//To_Do
+        somatorioLocacoes();//To_Do
+        exibeDadosMusicaLocacaoMedia();//To_Do
+        exibeDadosMidiaNova();//To_Do
     }
 
     public void cadastraVideo() {
@@ -132,7 +139,7 @@ public class ACMEMidia {
 //		5:atributo1,atributo2,atributo3,...,valor da locação
     }
 
-    public void exibeDadosMusicaDuracao() {
+    public void exibeDadosDuracao() {
 //		localiza a música cadastrada
 //		com maior duração. Se não existir nenhuma música cadastrada, mostra a
 //		mensagem de erro: 6:Nenhuma música encontrada.

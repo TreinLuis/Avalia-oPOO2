@@ -19,11 +19,14 @@ public class Musica extends Midia {
 
 	@Override
 	public double calculaLocacao() {
-		return 0;
+		double valor = 0;
+		valor = getCategoria().getValor() * duracao;
+		return Math.floor(valor*100)/100;//limitar para duas casas decimais
 	}
 
 	@Override
 	public String toString() {
-		return super.toString()+ " | Duração: " + duracao + "minutos";
+		return super.toString()+ " | Duração: " + duracao + "min" +
+				" | Locação: "+ calculaLocacao() + " Reais." ;
 	}
 }
