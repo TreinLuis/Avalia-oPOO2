@@ -15,12 +15,21 @@ public class Video extends Midia {
 	}
 
 	public void setQualidade(int qualidade) {
+
 		this.qualidade = qualidade;
 	}
 
 	@Override
 	public double calculaLocacao() {
-		return 0;
+		double valor = 0;
+		if(getAno() == 2024){
+			valor = 20.00;
+		} else if(getAno() <= 2023 && getAno() >=2000){
+			valor = 15.00;
+		} else{
+			valor = 10.00;
+		}
+		return valor;
 	}
 
 	@Override
