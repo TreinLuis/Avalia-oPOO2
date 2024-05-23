@@ -16,11 +16,11 @@ public class ACMEMidia {
     }
 
     public void executa() {
-        cadastraVideo();//Done
-        //cadastraMusica();//Done
+        //cadastraVideo();//Done
+        cadastraMusica();//Done
         //exibeDadosMidia();//To_Do
         //exibeDadosCategoria();//Done
-        exibeDadosQualidade();//To_Do
+        //exibeDadosQualidade();//Done
         exibeDadosDuracao();//To_Do
         removeMidia();//To_Do
         somatorioLocacoes();//To_Do
@@ -133,12 +133,12 @@ public class ACMEMidia {
     }
 
     public void exibeDadosQualidade() {
-        List<Midia> midiasQualidade = new ArrayList<>();
+        List<Midia> midiasQualidade;
 
         System.out.println("Digite a qualidade do vídeo par aobter os dados:");
         int qualidade = in.nextInt();
-        //in.nextLine();
-        midiasQualidade = midiateca.consultaPorQualidade(qualidade);
+        in.nextLine();
+        midiasQualidade = midiateca.consultaGeneralizada(Midia.class,qualidade);
         if(midiasQualidade.isEmpty()){
             System.out.println(" 4:Nenhuma midia encontrada.");
         }else{
@@ -146,7 +146,6 @@ public class ACMEMidia {
                 System.out.println(m.toString());
             }
         }
-        midiasQualidade = midiateca.consultaPorQualidade(qualidade);
 //		lê a qualidade
 //	    de vídeo. Se não existir a qualidade indicada, mostra a mensagem de erro:
 //		5:Qualidade inexistente.
@@ -155,6 +154,19 @@ public class ACMEMidia {
     }
 
     public void exibeDadosDuracao() {
+        List<Midia> midiasDuracao;
+
+        System.out.println("Digite a duração da musíca para aobter os dados:");
+        double duracao = in.nextDouble();
+        in.nextLine();
+        midiasDuracao = midiateca.consultaGeneralizada(Midia.class,duracao);
+        if(midiasDuracao.isEmpty()){
+            System.out.println(" 4:Nenhuma midia encontrada.");
+        }else{
+            for(Midia m : midiasDuracao){
+                System.out.println(m.toString());
+            }
+        }
 //		localiza a música cadastrada
 //		com maior duração. Se não existir nenhuma música cadastrada, mostra a
 //		mensagem de erro: 6:Nenhuma música encontrada.

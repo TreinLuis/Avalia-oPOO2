@@ -41,17 +41,16 @@ public class Midiateca implements Iterador {
 		}
         return midias;
     }
-	public List<Midia> consultaPorQualidade(int qualidade){
-		List<Midia> videos = new ArrayList<>();
-		for(Midia m : listaMidias){
-			if(m instanceof Video){
-				Video video = (Video) m;
-				if(video.getQualidade() == qualidade){
-					videos.add(video);
-				}
+	public <T extends Midia> List<T> consultaGeneralizada(Class<T> tipo, Number number) {
+		List<T> result = new ArrayList<>();
+		for (Midia m : listaMidias) {
+			if (m instanceof Video) {
+				result.add(tipo.cast(m));
+			} else if (m instanceof Musica) {
+				result.add(tipo.cast(m));
 			}
 		}
-		return videos;
+		return result;
 	}
 
     public boolean removeMidia(int codigo) {

@@ -29,4 +29,5 @@ public class Musica extends Midia {
 		return super.toString()+ " | Duração: " + duracao + "min" +
 				" | Locação: "+ calculaLocacao() + " Reais." ;
 	}
+
 }
