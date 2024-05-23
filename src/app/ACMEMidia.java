@@ -94,7 +94,7 @@ public class ACMEMidia {
 
             Musica m = new Musica(codigo, titulo, ano, categoria, duracao);
             if (!midiateca.cadastraMidia(m)) {
-                System.out.println(" 1:Erro-musíca com codigo repetido: " + codigo);
+                System.out.println(" 1:Erro-musica com codigo repetido: " + codigo);
             } else {
                 System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
                         ano + " | Categoria: " + categoria.getNome() + " | Duração: " + duracao + " min.");
