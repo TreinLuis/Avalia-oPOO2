@@ -17,13 +17,13 @@ public class Midiateca implements Iterador {
     }
 
     public boolean cadastraMidia(Midia midia) {
-        if (consultaPorCodigo(midia.getCodigo()) != null) {
+        if (consultaCodigo(midia.getCodigo())!= null) {
             return false;
         }
         return listaMidias.add(midia);
     }
 
-    public Midia consultaPorCodigo(int codigo) {
+    public Midia consultaCodigo(int codigo) {
         for (Midia m : listaMidias) {
             if (m.getCodigo() == codigo) {
                 return m;

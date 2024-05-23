@@ -18,10 +18,10 @@ public class ACMEMidia {
     public void executa() {
         //cadastraVideo();//Done
         cadastraMusica();//Done
-        //exibeDadosMidia();//To_Do
+        exibeDadosMidia();//To_Do
         //exibeDadosCategoria();//Done
         //exibeDadosQualidade();//Done
-        exibeDadosDuracao();//To_Do
+        //exibeDadosDuracao();//Done
         removeMidia();//To_Do
         somatorioLocacoes();//To_Do
         exibeDadosMusicaLocacaoMedia();//To_Do
@@ -105,26 +105,32 @@ public class ACMEMidia {
     }
 
     public void exibeDadosMidia() {
-//	: lê a categoria de
-//		uma mídia. Se não existir uma mídia com a categoria indicada, mostra a mensagem
-//		de erro: 4:Nenhuma midia encontrada.
-//				Se existir, mostra os dados da(s) mídia(s) no formato:
-//		4:atributo1,atributo2,atributo3,...,valor da locação
+        Midia m;
+        System.out.println("Digite o código da mídia:");
+        int codigo = in.nextInt();
+        m = midiateca.consultaCodigo(codigo);
+        if (m != null) {
+            System.out.println(m.toString());
+        } else {
+            System.out.println("3:codigo inexistente.");
+        }
+
     }
-    public void exibeDadosCategoria(){
+
+    public void exibeDadosCategoria() {
         List<Midia> midiasCategoria;
 
         System.out.println("Digite a categoria da mídia par aobter os dados: ");
         Categoria categoria = categoria();
         midiasCategoria = midiateca.consultaPorCategoria(categoria);
-        if(midiasCategoria.isEmpty()){
-            System.out.println(" 4:Nenhuma midia encontrada.");
-        }else{
-            for(Midia m : midiasCategoria){
-                if(m instanceof Video){
+        if (midiasCategoria.isEmpty()) {
+            System.out.println("4:Nenhuma midia encontrada.");
+        } else {
+            for (Midia m : midiasCategoria) {
+                if (m instanceof Video) {
                     Video video = (Video) m;
                     System.out.println(video.toString());
-                } else if(m instanceof Musica){
+                } else if (m instanceof Musica) {
                     Musica musica = (Musica) m;
                     System.out.println(musica.toString());
                 }
@@ -138,11 +144,11 @@ public class ACMEMidia {
         System.out.println("Digite a qualidade do vídeo par aobter os dados:");
         int qualidade = in.nextInt();
         in.nextLine();
-        midiasQualidade = midiateca.consultaGeneralizada(Midia.class,qualidade);
-        if(midiasQualidade.isEmpty()){
-            System.out.println(" 4:Nenhuma midia encontrada.");
-        }else{
-            for(Midia m : midiasQualidade){
+        midiasQualidade = midiateca.consultaGeneralizada(Midia.class, qualidade);
+        if (midiasQualidade.isEmpty()) {
+            System.out.println("5:Qualidade inexistente.");
+        } else {
+            for (Midia m : midiasQualidade) {
                 System.out.println(m.toString());
             }
         }
@@ -159,11 +165,11 @@ public class ACMEMidia {
         System.out.println("Digite a duração da musíca para aobter os dados:");
         double duracao = in.nextDouble();
         in.nextLine();
-        midiasDuracao = midiateca.consultaGeneralizada(Midia.class,duracao);
-        if(midiasDuracao.isEmpty()){
+        midiasDuracao = midiateca.consultaGeneralizada(Midia.class, duracao);
+        if (midiasDuracao.isEmpty()) {
             System.out.println(" 4:Nenhuma midia encontrada.");
-        }else{
-            for(Midia m : midiasDuracao){
+        } else {
+            for (Midia m : midiasDuracao) {
                 System.out.println(m.toString());
             }
         }
@@ -201,7 +207,8 @@ public class ACMEMidia {
 //				Se existir, mostra os dados da mídia no formato: 10:codigo,titulo,ano
 
     }
-    public Categoria categoria(){
+
+    public Categoria categoria() {
         System.out.println("Digite a categoria: ");
         String categoriaStr = in.nextLine();
 
