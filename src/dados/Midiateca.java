@@ -6,61 +6,67 @@ import java.util.List;
 
 public class Midiateca implements Iterador {
 
-	private int contador;
-	private List<Midia> listaMidias;
+    private int contador;
+    private List<Midia> listaMidias;
 
-	private Collection<Midia> midia;
+    private Collection<Midia> midia;
 
-	public Midiateca() {
- 		listaMidias= new ArrayList<>();
-	}
+    public Midiateca() {
+        this.contador = 0;
+        listaMidias = new ArrayList<>();
+    }
 
-	public boolean cadastraMidia(Midia midia) {
-		if(consultaPorCodigo(midia.getCodigo()) != null){
-			return false;
-		}
-		return listaMidias.add(midia);
-	}
-	public Midia consultaPorCodigo(int codigo) {
-		for(Midia m : listaMidias){
-			if(m.getCodigo() == codigo){
-				return m;
-			}
-		}
-		return null;
-	}
+    public boolean cadastraMidia(Midia midia) {
+        if (consultaPorCodigo(midia.getCodigo()) != null) {
+            return false;
+        }
+        return listaMidias.add(midia);
+    }
 
-	public ArrayList<Midia> consultaPorCategoria(Categoria categoria) {
+    public Midia consultaPorCodigo(int codigo) {
+        for (Midia m : listaMidias) {
+            if (m.getCodigo() == codigo) {
+                return m;
+            }
+        }
+        return null;
+    }
 
-		return null;
-	}
+    public ArrayList<Midia> consultaPorCategoria(Categoria categoria) {
 
-	public boolean removeMidia(int codigo) {
-		return false;
-	}
+        return null;
+    }
 
+    public boolean removeMidia(int codigo) {
 
-	/**
-	 * @see dados.Iterador#reset()
-	 */
-	public void reset() {
-
-	}
+        return false;
+    }
 
 
-	/**
-	 * @see dados.Iterador#hasNext()
-	 */
-	public boolean hasNext() {
-		return false;
-	}
+    /**
+     * @see dados.Iterador#reset()
+     */
+    public void reset() {
+        this.contador = 0;
+    }
 
 
-	/**
-	 * @see dados.Iterador#next()
-	 */
-	public Object next() {
-		return null;
-	}
+    /**
+     * @see dados.Iterador#hasNext()
+     */
+    public boolean hasNext() {
+        return contador < midia.size();
+    }
 
+
+    /**
+     * @see dados.Iterador#next()
+     */
+    public Object next() {
+        if (!hasNext()) {
+            throw new IllegalStateException("Não possui elementos!");
+        } else {
+            return listaMidias.get(contador++);
+        }
+    }
 }

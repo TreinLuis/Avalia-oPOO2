@@ -102,15 +102,7 @@ public class ACMEMidia {
             System.out.println("Caso não queira mais adicionar musíca digite -1! ");
             continuar = in.nextInt();
             in.nextLine();
-
         }
-
-
-//: lê o código de uma mídia. Se não
-//		existir uma mídia com o código indicado, mostra a mensagem de erro: 3:codigo
-//		inexistente.
-//				Se existir, mostra os dados da mídia no formato:
-//		3:atributo1,atributo2,atributo3,...,valor da locação
     }
 
     public void exibeDadosMidia() {
