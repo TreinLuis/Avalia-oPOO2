@@ -97,6 +97,13 @@ public class ACMEMidia {
     }
 
     public void exibeDadosMidia() {
+//	: lê a categoria de
+//		uma mídia. Se não existir uma mídia com a categoria indicada, mostra a mensagem
+//		de erro: 4:Nenhuma midia encontrada.
+//				Se existir, mostra os dados da(s) mídia(s) no formato:
+//		4:atributo1,atributo2,atributo3,...,valor da locação
+    }
+    public void exibeDadosCategoria(){
         List<Midia> midiasCategoria;
 
         System.out.println("Digite a categoria da mídia par aobter os dados: ");
@@ -115,11 +122,6 @@ public class ACMEMidia {
                 }
             }
         }
-//	: lê a categoria de
-//		uma mídia. Se não existir uma mídia com a categoria indicada, mostra a mensagem
-//		de erro: 4:Nenhuma midia encontrada.
-//				Se existir, mostra os dados da(s) mídia(s) no formato:
-//		4:atributo1,atributo2,atributo3,...,valor da locação
     }
 
     public void exibeDadosQualidade() {
@@ -179,5 +181,4 @@ public class ACMEMidia {
         }
         return categoria;
     }
-
 }
