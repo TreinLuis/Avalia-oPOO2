@@ -9,16 +9,12 @@ public class Video extends Midia {
 		this.qualidade = qualidade;
 
     }
-
 	public int getQualidade() {
 		return qualidade;
 	}
-
 	public void setQualidade(int qualidade) {
-
 		this.qualidade = qualidade;
 	}
-
 	@Override
 	public double calculaLocacao() {
 		double valor = 0;
@@ -31,7 +27,6 @@ public class Video extends Midia {
 		}
 		return valor;
 	}
-
 	@Override
 	public String toString() {
 		return super.toString() + " | Qualidade: " + qualidade + "p" +

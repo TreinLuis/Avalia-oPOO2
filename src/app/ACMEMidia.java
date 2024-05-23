@@ -2,6 +2,7 @@ package app;
 
 import dados.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,10 +16,10 @@ public class ACMEMidia {
     }
 
     public void executa() {
-        //cadastraVideo();//Done
-        cadastraMusica();//Done
-        exibeDadosMidia();//To_Do
-        exibeDadosCategoria();//Done
+        cadastraVideo();//Done
+        //cadastraMusica();//Done
+        //exibeDadosMidia();//To_Do
+        //exibeDadosCategoria();//Done
         exibeDadosQualidade();//To_Do
         exibeDadosDuracao();//To_Do
         removeMidia();//To_Do
@@ -132,8 +133,22 @@ public class ACMEMidia {
     }
 
     public void exibeDadosQualidade() {
+        List<Midia> midiasQualidade = new ArrayList<>();
+
+        System.out.println("Digite a qualidade do vídeo par aobter os dados:");
+        int qualidade = in.nextInt();
+        //in.nextLine();
+        midiasQualidade = midiateca.consultaPorQualidade(qualidade);
+        if(midiasQualidade.isEmpty()){
+            System.out.println(" 4:Nenhuma midia encontrada.");
+        }else{
+            for(Midia m : midiasQualidade){
+                System.out.println(m.toString());
+            }
+        }
+        midiasQualidade = midiateca.consultaPorQualidade(qualidade);
 //		lê a qualidade
-//		de vídeo. Se não existir a qualidade indicada, mostra a mensagem de erro:
+//	    de vídeo. Se não existir a qualidade indicada, mostra a mensagem de erro:
 //		5:Qualidade inexistente.
 //		Se existir, mostra os dados do(s) vídeos(s) no formato:
 //		5:atributo1,atributo2,atributo3,...,valor da locação
