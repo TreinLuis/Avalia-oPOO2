@@ -17,7 +17,7 @@ public class Midiateca implements Iterador {
     }
 
     public boolean cadastraMidia(Midia midia) {
-        if (consultaCodigo(midia.getCodigo())!= null) {
+        if (consultaCodigo(midia.getCodigo()) != null) {
             return false;
         }
         return listaMidias.add(midia);
@@ -33,34 +33,48 @@ public class Midiateca implements Iterador {
     }
 
     public List<Midia> consultaPorCategoria(Categoria categoria) {
-		List<Midia> midias = new ArrayList<>();
-		for(Midia m : listaMidias){
-			if(m.getCategoria().equals(categoria)){
-				midias.add(m);
-			}
-		}
+        List<Midia> midias = new ArrayList<>();
+        for (Midia m : listaMidias) {
+            if (m.getCategoria().equals(categoria)) {
+                midias.add(m);
+            }
+        }
         return midias;
     }
-	public <T extends Midia> List<T> consultaGeneralizada(Class<T> tipo, Number number) {
-		List<T> result = new ArrayList<>();
-		for (Midia m : listaMidias) {
-			if (m instanceof Video) {
-				result.add(tipo.cast(m));
-			} else if (m instanceof Musica) {
-				result.add(tipo.cast(m));
-			}
-		}
-		return result;
-	}
+
+    public <T extends Midia> List<T> consultaGeneralizada(Class<T> tipo, Number number) {
+        List<T> result = new ArrayList<>();
+        for (Midia m : listaMidias) {
+            if (m instanceof Video) {
+                result.add(tipo.cast(m));
+            } else if (m instanceof Musica) {
+                result.add(tipo.cast(m));
+            }
+        }
+        return result;
+    }
 
     public boolean removeMidia(int codigo) {
+        Midia m = consultaCodigo(codigo);
+        if (m != null) {
+            listaMidias.remove(m);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        return false;
+    public double somatorioLocacoes() {
+        double somatorio = 0;
+        for (Midia m : listaMidias) {
+            somatorio += m.calculaLocacao();
+        }
+        return somatorio;
     }
 
 
     /**
-     * @see dados.Iterador#reset()
+     * @see Iterador#reset()
      */
     public void reset() {
         this.contador = 0;
@@ -68,7 +82,7 @@ public class Midiateca implements Iterador {
 
 
     /**
-     * @see dados.Iterador#hasNext()
+     * @see Iterador#hasNext()
      */
     public boolean hasNext() {
         return contador < midia.size();
@@ -76,7 +90,7 @@ public class Midiateca implements Iterador {
 
 
     /**
-     * @see dados.Iterador#next()
+     * @see Iterador#next()
      */
     public Object next() {
         if (!hasNext()) {

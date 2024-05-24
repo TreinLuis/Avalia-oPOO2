@@ -13,6 +13,7 @@ public abstract class Midia {
 		this.codigo = codigo;
 		this.titulo = titulo;
 		this.categoria = categoria;
+		this.ano = ano;
 	}
 	public Categoria getCategoria(){
 		return categoria;

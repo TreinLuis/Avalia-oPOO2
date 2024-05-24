@@ -16,18 +16,17 @@ public class ACMEMidia {
     }
 
     public void executa() {
-        //cadastraVideo();//Done
+        cadastraVideo();//Done
         cadastraMusica();//Done
-        exibeDadosMidia();//To_Do
+        exibeDadosMidia();//Done
         //exibeDadosCategoria();//Done
         //exibeDadosQualidade();//Done
         //exibeDadosDuracao();//Done
-        removeMidia();//To_Do
+        //removeMidia();//Done
         somatorioLocacoes();//To_Do
         exibeDadosMusicaLocacaoMedia();//To_Do
         exibeDadosMidiaNova();//To_Do
     }
-
     public void cadastraVideo() {
         var continuar = 0;
         while (continuar != -1) {
@@ -152,11 +151,6 @@ public class ACMEMidia {
                 System.out.println(m.toString());
             }
         }
-//		lê a qualidade
-//	    de vídeo. Se não existir a qualidade indicada, mostra a mensagem de erro:
-//		5:Qualidade inexistente.
-//		Se existir, mostra os dados do(s) vídeos(s) no formato:
-//		5:atributo1,atributo2,atributo3,...,valor da locação
     }
 
     public void exibeDadosDuracao() {
@@ -173,20 +167,30 @@ public class ACMEMidia {
                 System.out.println(m.toString());
             }
         }
-//		localiza a música cadastrada
-//		com maior duração. Se não existir nenhuma música cadastrada, mostra a
-//		mensagem de erro: 6:Nenhuma música encontrada.
     }
 
     public void removeMidia() {
-//	: lê o código de uma mídia. Se não existir uma mídia com o
-//		código indicado, mostra a mensagem de erro: 7:codigo inexistente.
-//		Se existir, mostra os dados da mídia no formato:
-//		7:atributo1,atributo2,atributo3,...,valor da locação e depois a
-//		remove do sistema.
+        System.out.println("Digite o código da mídia");
+        int codigo = in.nextInt();
+        in.nextLine();
+        Midia m = midiateca.consultaCodigo(codigo);
+
+        if(m!=null){
+            System.out.println("7: " + m.toString());
+            midiateca.removeMidia(codigo);
+        } else {
+            System.out.println("7:codigo inexistente.");
+
+        }
     }
 
     public void somatorioLocacoes() {
+        double somatorio = midiateca.somatorioLocacoes();
+        if(somatorio == 0.0){
+            System.out.println("8:Nenhuma mídia encontrada.");
+        } else{
+            System.out.println("8: "+ somatorio);
+        }
 //		calcula o somatório do
 //			valor de locação de todas as mídias do sistema. Se não existir mídia cadastrada
 //		no sistema, mostra a mensagem de erro: 8:Nenhuma mídia encontrada.
@@ -221,5 +225,21 @@ public class ACMEMidia {
             return null;
         }
         return categoria;
+    }
+
+    public Number defineAtributo(String entrada) {
+        Number atributo;
+
+        try {
+            atributo = Integer.parseInt(entrada);
+        } catch (NumberFormatException e1) {
+            try {
+                atributo = Double.parseDouble(entrada);
+            } catch (NumberFormatException e2) {
+                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                atributo = null;
+            }
+        }
+        return atributo;
     }
 }
