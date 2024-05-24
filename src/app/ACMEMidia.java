@@ -192,10 +192,6 @@ public class ACMEMidia {
         } else{
             System.out.println("8: "+ somatorio);
         }
-//		calcula o somatório do
-//			valor de locação de todas as mídias do sistema. Se não existir mídia cadastrada
-//		no sistema, mostra a mensagem de erro: 8:Nenhuma mídia encontrada.
-//				Se existir, mostra a mensagem no formato: 8:valor do somatório
     }
 
     public void exibeDadosMusicaLocacaoMedia() {
@@ -206,11 +202,16 @@ public class ACMEMidia {
     }
 
     public void exibeDadosMidiaNova() {
-//		mostra os dados da mídia mais nova. Se não
-//		existir nenhuma mídia cadastrada, mostra a mensagem de erro: 10:Nenhuma midia
-//		encontrada.
-//				Se existir, mostra os dados da mídia no formato: 10:codigo,titulo,ano
-
+        try {
+            Midia maisNova = midiateca.midiaMaisNova();
+            if (maisNova != null) {
+                System.out.println("8: "+ maisNova.toString() );
+            } else {
+                System.out.println("8: Nenhuma mídia encontrada.");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao obter a mídia mais nova: " + e.getMessage());
+        }
     }
 
     public Categoria categoria() {

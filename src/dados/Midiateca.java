@@ -55,7 +55,15 @@ public class Midiateca implements Iterador {
         }
         return result;
     }
-
+    public Midia midiaMaisNova() {
+        Midia midiaMaisNova = listaMidias.get(0);
+        for (Midia m : listaMidias) {
+            if (m.getAno() > midiaMaisNova.getAno()) {
+                midiaMaisNova = m;
+            }
+        }
+        return midiaMaisNova;
+    }
 
     public boolean removeMidia(int codigo) {
         Midia m = consultaCodigo(codigo);
