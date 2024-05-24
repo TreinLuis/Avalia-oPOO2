@@ -1,0 +1,5 @@
+Digite o código do vídeo: 
+Digite o título: 
+Digite a categoria do vídeo: 
+Categoria inválida!
+Digite o código da musíca: 
