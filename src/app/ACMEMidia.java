@@ -28,13 +28,13 @@ public class ACMEMidia {
         cadastraVideo();//Done
         cadastraMusica();//Done
         exibeDadosMidia();//Done
-        //exibeDadosCategoria();//Done
-        //exibeDadosQualidade();//Done
+        exibeDadosCategoria();//Done
+        exibeDadosQualidade();//Done
         //exibeDadosDuracao();//Done
-        //removeMidia();//Done
-        somatorioLocacoes();//To_Do
-        exibeDadosMusicaLocacaoMedia();//To_Do
-        exibeDadosMidiaNova();//To_Do
+        removeMidia();//Done
+        somatorioLocacoes();//Done
+        //exibeDadosMusicaLocacaoMedia();//To_Do
+        //exibeDadosMidiaNova();//To_Do
     }
     public void cadastraVideo() {
         var continuar = 0;
@@ -46,21 +46,12 @@ public class ACMEMidia {
             System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            System.out.println("Digite a categoria do vídeo: ");
-            String categoriaStr = in.nextLine();
-
-            Categoria categoria;
-            try {
-                categoria = Categoria.fromString(categoriaStr);
-                System.out.println(categoria);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Categoria inválida!");
-                return;
-            }
-
             System.out.println("Digite o ano de lançamento do vídeo: ");
             int ano = in.nextInt();
             in.nextLine();
+
+            //System.out.println("Digite a categoria do vídeo: ");
+            Categoria categoria = categoria();
 
             System.out.println("Digite a qualidade da imagem do vídeo: ");
             int qualidade = in.nextInt();
@@ -89,11 +80,11 @@ public class ACMEMidia {
             System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            Categoria categoria = categoria();
-
             System.out.println("Digite o ano de lançamento da musíca: ");
             int ano = in.nextInt();
             in.nextLine();
+
+            Categoria categoria = categoria();
 
             System.out.println("Digite a duração da musíca: ");
             double duracao = in.nextDouble();
@@ -116,6 +107,7 @@ public class ACMEMidia {
         Midia m;
         System.out.println("Digite o código da mídia:");
         int codigo = in.nextInt();
+        in.nextLine();
         m = midiateca.consultaCodigo(codigo);
         if (m != null) {
             System.out.println(m.toString());

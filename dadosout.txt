@@ -1,5 +1,27 @@
 Digite o código do vídeo: 
 Digite o título: 
-Digite a categoria do vídeo: 
-Categoria inválida!
+Digite o ano de lançamento do vídeo: 
+Digite a categoria: 
+FIC
+Digite a qualidade da imagem do vídeo: 
+Codigo: 111 | Título: Filme 1 | Ano: 2024 | Categoria: Ficcao | Qualidade: 1080p.
+Caso não queira mais adicionar musíca digite -1! 
 Digite o código da musíca: 
+Digite o título: 
+Digite o ano de lançamento da musíca: 
+Digite a categoria: 
+ROM
+Digite a duração da musíca: 
+Codigo: 222 | Título: Musica 1 | Ano: 2023 | Categoria: Romance | Duração: 148.5 min.
+Caso não queira mais adicionar musíca digite -1! 
+Digite o código da mídia:
+Código: 222 | Titulo: Musica 1 | Categoria: ROM | Duração: 148.5min | Locação: 44.55 Reais.
+Digite a categoria da mídia par aobter os dados: 
+Digite a categoria: 
+ROM
+Código: 222 | Titulo: Musica 1 | Categoria: ROM | Duração: 148.5min | Locação: 44.55 Reais.
+Digite a qualidade do vídeo par aobter os dados:
+Código: 111 | Titulo: Filme 1 | Categoria: FIC | Qualidade: 1080p | Locação: 20.0 Reais.
+Digite o código da mídia
+7: Código: 111 | Titulo: Filme 1 | Categoria: FIC | Qualidade: 1080p | Locação: 20.0 Reais.
+8: 44.55

@@ -45,14 +45,17 @@ public class Midiateca implements Iterador {
     public <T extends Midia> List<T> consultaGeneralizada(Class<T> tipo, Number number) {
         List<T> result = new ArrayList<>();
         for (Midia m : listaMidias) {
-            if (m instanceof Video) {
-                result.add(tipo.cast(m));
-            } else if (m instanceof Musica) {
-                result.add(tipo.cast(m));
+            if (tipo.isInstance(m)) {
+                if (m instanceof Video && number.equals(((Video) m).getQualidade())) {
+                    result.add(tipo.cast(m));
+                } else if (m instanceof Musica && number.equals(((Musica) m).getDuracao())) {
+                    result.add(tipo.cast(m));
+                }
             }
         }
         return result;
     }
+
 
     public boolean removeMidia(int codigo) {
         Midia m = consultaCodigo(codigo);
