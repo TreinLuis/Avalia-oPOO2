@@ -60,7 +60,7 @@ public class ACMEMidia {
             if (!midiateca.cadastraMidia(v)) {
                 System.out.println(" 1:Erro-video com codigo repetido: " + codigo);
             } else {
-                System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
+                System.out.println("1:Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
                         ano + " | Categoria: " + categoria.getNome() + " | Qualidade: " + qualidade + "p.");
             }
             System.out.println("Caso não queira mais adicionar musíca digite -1! ");
@@ -92,9 +92,9 @@ public class ACMEMidia {
 
             Musica m = new Musica(codigo, titulo, ano, categoria, duracao);
             if (!midiateca.cadastraMidia(m)) {
-                System.out.println(" 1:Erro-musica com codigo repetido: " + codigo);
+                System.out.println(" 2:Erro-musica com codigo repetido: " + codigo);
             } else {
-                System.out.println("Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
+                System.out.println("2:Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
                         ano + " | Categoria: " + categoria.getNome() + " | Duração: " + duracao + " min.");
             }
             System.out.println("Caso não queira mais adicionar musíca digite -1! ");
@@ -162,7 +162,7 @@ public class ACMEMidia {
         in.nextLine();
         midiasDuracao = midiateca.consultaGeneralizada(Midia.class, duracao);
         if (midiasDuracao.isEmpty()) {
-            System.out.println(" 4:Nenhuma midia encontrada.");
+            System.out.println(" 6:Nenhuma música encontrada.");
         } else {
             for (Midia m : midiasDuracao) {
                 System.out.println(m.toString());
@@ -195,10 +195,18 @@ public class ACMEMidia {
     }
 
     public void exibeDadosMusicaLocacaoMedia() {
-//		calcula a média dos valores de locações das músicas
-//		cadastradas e localiza a música com valor de locação mais próximo da média
-//		calculada. Se não existir nenhuma música cadastrada, mostra a mensagem de erro:
-//		9:Nenhuma musica encontrada
+        try {
+            Musica musicaMaisProximaDaMedia = (Musica) midiateca.musicaMaisProximoMedia();
+            if (musicaMaisProximaDaMedia == null) {
+                System.out.println("9:Nenhuma música encontrada.");
+            } else {
+                System.out.println("9:" + musicaMaisProximaDaMedia.getCodigo() + "," +
+                        musicaMaisProximaDaMedia.getTitulo() + "," +
+                        musicaMaisProximaDaMedia.getAno());
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao obter a música mais próxima da média: " + e.getMessage());
+        }
     }
 
     public void exibeDadosMidiaNova() {

@@ -83,6 +83,31 @@ public class Midiateca implements Iterador {
         return somatorio;
     }
 
+    public Midia musicaMaisProximoMedia(){
+        List<Musica> musicas = new ArrayList<>();
+        for (Midia m : listaMidias) {
+            if (m instanceof Musica) {
+                musicas.add((Musica) m);
+            }
+        }
+        double soma = 0;
+        for (Musica musica : musicas) {
+            soma += musica.calculaLocacao();
+        }
+        double media = soma / musicas.size();
+        Musica musicaMaisProximaDaMedia = musicas.get(0);
+        double menorDiferenca = Math.abs(musicaMaisProximaDaMedia.calculaLocacao() - media);
+        for (Musica musica : musicas) {
+            double diferenca = Math.abs(musica.calculaLocacao() - media);
+            if (diferenca < menorDiferenca) {
+                musicaMaisProximaDaMedia = musica;
+                menorDiferenca = diferenca;
+            }
+        }
+        return musicaMaisProximaDaMedia;
+    }
+
+
 
     /**
      * @see Iterador#reset()

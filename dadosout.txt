@@ -4,7 +4,7 @@ Digite o ano de lançamento do vídeo:
 Digite a categoria: 
 FIC
 Digite a qualidade da imagem do vídeo: 
-Codigo: 111 | Título: Filme 1 | Ano: 2024 | Categoria: Ficcao | Qualidade: 1080p.
+1:Codigo: 111 | Título: Filme 1 | Ano: 2024 | Categoria: Ficcao | Qualidade: 1080p.
 Caso não queira mais adicionar musíca digite -1! 
 Digite o código da musíca: 
 Digite o título: 
@@ -12,7 +12,7 @@ Digite o ano de lançamento da musíca:
 Digite a categoria: 
 ROM
 Digite a duração da musíca: 
-Codigo: 222 | Título: Musica 1 | Ano: 2023 | Categoria: Romance | Duração: 148.5 min.
+2:Codigo: 222 | Título: Musica 1 | Ano: 2023 | Categoria: Romance | Duração: 148.5 min.
 Caso não queira mais adicionar musíca digite -1! 
 Digite o código da mídia:
 Código: 222 | Titulo: Musica 1 | Categoria: ROM | Duração: 148.5min | Locação: 44.55 Reais.
