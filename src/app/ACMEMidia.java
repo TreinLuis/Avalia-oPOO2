@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class ACMEMidia {
     private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela (console)
-    private final String nomeArquivoEntrada = "entrada.txt";  // Nome do arquivo de entrada de dados
-    private final String nomeArquivoSaida = "dadosout.txt";  // Nome do arquivo de
+    private  String nomeArquivoEntrada = "entrada.txt";  // Nome do arquivo de entrada de dados
+    private  String nomeArquivoSaida = "dadosout.txt";  // Nome do arquivo de
     private Scanner in = new Scanner(System.in);
 
     private Midiateca midiateca;
@@ -50,7 +50,7 @@ public class ACMEMidia {
             int ano = in.nextInt();
             in.nextLine();
 
-            //System.out.println("Digite a categoria do vídeo: ");
+            System.out.println("Digite a categoria do vídeo: ");
             Categoria categoria = categoria();
 
             System.out.println("Digite a qualidade da imagem do vídeo: ");
@@ -110,7 +110,7 @@ public class ACMEMidia {
         in.nextLine();
         m = midiateca.consultaCodigo(codigo);
         if (m != null) {
-            System.out.println(m.toString());
+            System.out.println("3: " + m.toString());
         } else {
             System.out.println("3:codigo inexistente.");
         }
@@ -129,10 +129,10 @@ public class ACMEMidia {
             for (Midia m : midiasCategoria) {
                 if (m instanceof Video) {
                     Video video = (Video) m;
-                    System.out.println(video.toString());
+                    System.out.println("4:"+  video.toString());
                 } else if (m instanceof Musica) {
                     Musica musica = (Musica) m;
-                    System.out.println(musica.toString());
+                    System.out.println("4:"+musica.toString());
                 }
             }
         }
@@ -149,7 +149,7 @@ public class ACMEMidia {
             System.out.println("5:Qualidade inexistente.");
         } else {
             for (Midia m : midiasQualidade) {
-                System.out.println(m.toString());
+                System.out.println("5: "+m.toString());
             }
         }
     }
@@ -162,10 +162,10 @@ public class ACMEMidia {
         in.nextLine();
         midiasDuracao = midiateca.consultaGeneralizada(Midia.class, duracao);
         if (midiasDuracao.isEmpty()) {
-            System.out.println(" 6:Nenhuma música encontrada.");
+            System.out.println("6:Nenhuma música encontrada.");
         } else {
             for (Midia m : midiasDuracao) {
-                System.out.println(m.toString());
+                System.out.println("6: " + m.toString());
             }
         }
     }
@@ -255,18 +255,16 @@ public class ACMEMidia {
     private void redirecionaES() {
         try {
             BufferedReader streamEntrada = new BufferedReader(new FileReader(nomeArquivoEntrada));
-            in = new Scanner(streamEntrada);   // Usa como entrada um arquivo
+            in = new Scanner(streamEntrada);
             PrintStream streamSaida = new PrintStream(new File(nomeArquivoSaida), Charset.forName("UTF-8"));
-            System.setOut(streamSaida);             // Usa como saida um arquivo
+            System.setOut(streamSaida);
         } catch (Exception e) {
             System.out.println(e);
         }
-        Locale.setDefault(Locale.ENGLISH);   // Ajusta para ponto decimal
-        in.useLocale(Locale.ENGLISH);   // Ajusta para leitura para ponto decimal
+        Locale.setDefault(Locale.ENGLISH);
+        in.useLocale(Locale.ENGLISH);
     }
 
-    // Restaura E/S padrao de tela(console)/teclado
-    // Chame este metodo para retornar a leitura e escrita de dados para o padrao
     private void restauraES() {
         System.setOut(saidaPadrao);
         in = new Scanner(System.in);
