@@ -1,28 +1,18 @@
-Digite o código do vídeo: 
-Digite o título: 
-Digite o ano de lançamento do vídeo: 
-Digite a categoria do vídeo: 
-Digite a categoria: 
-FIC
-Digite a qualidade da imagem do vídeo: 
-1:Codigo: 111 | Título: Filme 1 | Ano: 2024 | Categoria: Ficcao | Qualidade: 1080p.
-Caso não queira mais adicionar musíca digite -1! 
-Digite o código da musíca: 
-Digite o título: 
-Digite o ano de lançamento da musíca: 
-Digite a categoria: 
-ROM
-Digite a duração da musíca: 
-2:Codigo: 222 | Título: Musica 1 | Ano: 2023 | Categoria: Romance | Duração: 148.5 min.
-Caso não queira mais adicionar musíca digite -1! 
-Digite o código da mídia:
-3: Código: 222 | Titulo: Musica 1 | Categoria: Romance | Duração: 148.5min | Locação: 44.55 Reais.
-Digite a categoria da mídia par aobter os dados: 
-Digite a categoria: 
-ROM
-4:Código: 222 | Titulo: Musica 1 | Categoria: Romance | Duração: 148.5min | Locação: 44.55 Reais.
-Digite a qualidade do vídeo par aobter os dados:
-5: Código: 111 | Titulo: Filme 1 | Categoria: Ficcao | Qualidade: 1080p | Locação: 20.0 Reais.
-Digite o código da mídia
-7: Código: 111 | Titulo: Filme 1 | Categoria: Ficcao | Qualidade: 1080p | Locação: 20.0 Reais.
-8: 44.55
+1:111,Filme 1,2024,Ficcao,1080
+1:222,Filme 2,2022,Drama,640
+1:333,Filme 3,1990,Acao,4096
+1:444,Filme 4,2021,Drama,1080
+2:555,Musica 1,2023,Romance,5.5
+2:666,Musica 2,1999,Drama,6.6
+2:777,Musica 3,2023,Romance,7.7
+2:888,Musica 4,2022,Ficcao,8.8
+3:777,Musica 3,Romance,7.7,2.31
+4:222,Filme 2,Drama,640,15.0
+4:444,Filme 4,Drama,1080,15.0
+4:666,Musica 2,Drama,6.6,4.61
+5:111,Filme 1,Ficcao,1080,20.0
+5:444,Filme 4,Drama,1080,15.0
+7:666,Musica 2,Drama,6.6,4.61
+8:68.36
+9:777,Musica 3,2023
+8: 111,Filme 1,Ficcao,1080,20.0

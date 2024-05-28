@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class ACMEMidia {
     private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela (console)
-    private  String nomeArquivoEntrada = "entrada.txt";  // Nome do arquivo de entrada de dados
+    private  String nomeArquivoEntrada = "entrada (1).txt";  // Nome do arquivo de entrada de dados
     private  String nomeArquivoSaida = "dadosout.txt";  // Nome do arquivo de
     private Scanner in = new Scanner(System.in);
 
@@ -33,60 +33,60 @@ public class ACMEMidia {
         //exibeDadosDuracao();//Done
         removeMidia();//Done
         somatorioLocacoes();//Done
-        //exibeDadosMusicaLocacaoMedia();//To_Do
-        //exibeDadosMidiaNova();//To_Do
+        exibeDadosMusicaLocacaoMedia();//To_Do
+        exibeDadosMidiaNova();//To_Do
     }
     public void cadastraVideo() {
-        var continuar = 0;
-        while (continuar != -1) {
-            System.out.println("Digite o código do vídeo: ");
-            int codigo = in.nextInt();
-            in.nextLine();
+        var codigo = in.nextInt();
+        in.nextLine();
 
-            System.out.println("Digite o título: ");
+        while (codigo != -1) {
+            //System.out.println("Digite o código do vídeo: ");
+
+            //System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            System.out.println("Digite o ano de lançamento do vídeo: ");
+            //System.out.println("Digite o ano de lançamento do vídeo: ");
             int ano = in.nextInt();
             in.nextLine();
 
-            System.out.println("Digite a categoria do vídeo: ");
+            //System.out.println("Digite a categoria do vídeo: ");
             Categoria categoria = categoria();
 
-            System.out.println("Digite a qualidade da imagem do vídeo: ");
+            //System.out.println("Digite a qualidade da imagem do vídeo: ");
             int qualidade = in.nextInt();
 
             Video v = new Video(codigo, titulo, ano, categoria, qualidade);
             if (!midiateca.cadastraMidia(v)) {
                 System.out.println(" 1:Erro-video com codigo repetido: " + codigo);
             } else {
-                System.out.println("1:Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
-                        ano + " | Categoria: " + categoria.getNome() + " | Qualidade: " + qualidade + "p.");
+                System.out.println("1:" + codigo + "," + titulo + "," +
+                        ano + "," + categoria.getNome() + "," + qualidade);
             }
-            System.out.println("Caso não queira mais adicionar musíca digite -1! ");
-            continuar = in.nextInt();
+           // System.out.println("Caso não queira mais adicionar musíca digite -1! ");
+            codigo = in.nextInt();
             in.nextLine();
+
         }
 
     }
 
     public void cadastraMusica() {
-        var continuar = 0;
+        var codigo = in.nextInt();
+        in.nextLine();
 
-        while (continuar != -1) {
-            System.out.println("Digite o código da musíca: ");
-            int codigo = in.nextInt();
-            in.nextLine();
-            System.out.println("Digite o título: ");
+        while (codigo != -1) {
+
+            //System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            System.out.println("Digite o ano de lançamento da musíca: ");
+            //System.out.println("Digite o ano de lançamento da musíca: ");
             int ano = in.nextInt();
             in.nextLine();
 
             Categoria categoria = categoria();
 
-            System.out.println("Digite a duração da musíca: ");
+            //System.out.println("Digite a duração da musíca: ");
             double duracao = in.nextDouble();
             in.nextLine();
 
@@ -94,23 +94,23 @@ public class ACMEMidia {
             if (!midiateca.cadastraMidia(m)) {
                 System.out.println(" 2:Erro-musica com codigo repetido: " + codigo);
             } else {
-                System.out.println("2:Codigo: " + codigo + " | Título: " + titulo + " | Ano: " +
-                        ano + " | Categoria: " + categoria.getNome() + " | Duração: " + duracao + " min.");
+                System.out.println("2:" + codigo + "," + titulo + "," +
+                        ano + "," + categoria.getNome() + "," + duracao);
             }
-            System.out.println("Caso não queira mais adicionar musíca digite -1! ");
-            continuar = in.nextInt();
+            //System.out.println("Caso não queira mais adicionar musíca digite -1! ");
+            codigo = in.nextInt();
             in.nextLine();
         }
     }
 
     public void exibeDadosMidia() {
         Midia m;
-        System.out.println("Digite o código da mídia:");
+        //System.out.println("Digite o código da mídia:");
         int codigo = in.nextInt();
         in.nextLine();
         m = midiateca.consultaCodigo(codigo);
         if (m != null) {
-            System.out.println("3: " + m.toString());
+            System.out.println("3:" + m.toString());
         } else {
             System.out.println("3:codigo inexistente.");
         }
@@ -120,7 +120,7 @@ public class ACMEMidia {
     public void exibeDadosCategoria() {
         List<Midia> midiasCategoria;
 
-        System.out.println("Digite a categoria da mídia par aobter os dados: ");
+        //System.out.println("Digite a categoria da mídia par aobter os dados: ");
         Categoria categoria = categoria();
         midiasCategoria = midiateca.consultaPorCategoria(categoria);
         if (midiasCategoria.isEmpty()) {
@@ -141,7 +141,7 @@ public class ACMEMidia {
     public void exibeDadosQualidade() {
         List<Midia> midiasQualidade;
 
-        System.out.println("Digite a qualidade do vídeo par aobter os dados:");
+        //System.out.println("Digite a qualidade do vídeo par aobter os dados:");
         int qualidade = in.nextInt();
         in.nextLine();
         midiasQualidade = midiateca.consultaGeneralizada(Midia.class, qualidade);
@@ -149,7 +149,7 @@ public class ACMEMidia {
             System.out.println("5:Qualidade inexistente.");
         } else {
             for (Midia m : midiasQualidade) {
-                System.out.println("5: "+m.toString());
+                System.out.println("5:"+m.toString());
             }
         }
     }
@@ -157,27 +157,28 @@ public class ACMEMidia {
     public void exibeDadosDuracao() {
         List<Midia> midiasDuracao;
 
-        System.out.println("Digite a duração da musíca para aobter os dados:");
+        //System.out.println("Digite a duração da musíca para aobter os dados:");
         double duracao = in.nextDouble();
-        in.nextLine();
+        System.out.println(duracao);
+        //in.nextLine();
         midiasDuracao = midiateca.consultaGeneralizada(Midia.class, duracao);
         if (midiasDuracao.isEmpty()) {
             System.out.println("6:Nenhuma música encontrada.");
         } else {
             for (Midia m : midiasDuracao) {
-                System.out.println("6: " + m.toString());
+                System.out.println("6:" + m.toString());
             }
         }
     }
 
     public void removeMidia() {
-        System.out.println("Digite o código da mídia");
+        //System.out.println("Digite o código da mídia");
         int codigo = in.nextInt();
         in.nextLine();
         Midia m = midiateca.consultaCodigo(codigo);
 
         if(m!=null){
-            System.out.println("7: " + m.toString());
+            System.out.println("7:" + m.toString());
             midiateca.removeMidia(codigo);
         } else {
             System.out.println("7:codigo inexistente.");
@@ -190,7 +191,7 @@ public class ACMEMidia {
         if(somatorio == 0.0){
             System.out.println("8:Nenhuma mídia encontrada.");
         } else{
-            System.out.println("8: "+ somatorio);
+            System.out.println("8:"+ somatorio);
         }
     }
 
@@ -213,9 +214,9 @@ public class ACMEMidia {
         try {
             Midia maisNova = midiateca.midiaMaisNova();
             if (maisNova != null) {
-                System.out.println("8: "+ maisNova.toString() );
+                System.out.println("10:"+ maisNova.toString() );
             } else {
-                System.out.println("8: Nenhuma mídia encontrada.");
+                System.out.println("10: Nenhuma mídia encontrada.");
             }
         } catch (Exception e) {
             System.out.println("Ocorreu um erro ao obter a mídia mais nova: " + e.getMessage());
@@ -223,13 +224,12 @@ public class ACMEMidia {
     }
 
     public Categoria categoria() {
-        System.out.println("Digite a categoria: ");
+        //System.out.println("Digite a categoria: ");
         String categoriaStr = in.nextLine();
 
         Categoria categoria;
         try {
             categoria = Categoria.fromString(categoriaStr);
-            System.out.println(categoria);
         } catch (IllegalArgumentException e) {
             System.out.println("Categoria inválida!");
             return null;
