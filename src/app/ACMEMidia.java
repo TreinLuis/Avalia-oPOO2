@@ -255,16 +255,18 @@ public class ACMEMidia {
     private void redirecionaES() {
         try {
             BufferedReader streamEntrada = new BufferedReader(new FileReader(nomeArquivoEntrada));
-            in = new Scanner(streamEntrada);
+            in = new Scanner(streamEntrada);   // Usa como entrada um arquivo
             PrintStream streamSaida = new PrintStream(new File(nomeArquivoSaida), Charset.forName("UTF-8"));
-            System.setOut(streamSaida);
+            System.setOut(streamSaida);             // Usa como saida um arquivo
         } catch (Exception e) {
             System.out.println(e);
         }
-        Locale.setDefault(Locale.ENGLISH);
-        in.useLocale(Locale.ENGLISH);
+        Locale.setDefault(Locale.ENGLISH);   // Ajusta para ponto decimal
+        in.useLocale(Locale.ENGLISH);   // Ajusta para leitura para ponto decimal
     }
 
+    // Restaura E/S padrao de tela(console)/teclado
+    // Chame este metodo para retornar a leitura e escrita de dados para o padrao
     private void restauraES() {
         System.setOut(saidaPadrao);
         in = new Scanner(System.in);
