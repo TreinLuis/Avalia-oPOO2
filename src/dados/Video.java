@@ -31,8 +31,8 @@ public class Video extends Midia {
 
     @Override
     public String toString() {
-        return super.toString() + " | Qualidade: " + qualidade + "p" +
-                " | Locação: " + calculaLocacao() + " Reais.";
+        return super.toString() + "," + qualidade  +
+                "," + calculaLocacao();
     }
 
 }

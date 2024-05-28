@@ -26,8 +26,8 @@ public class Musica extends Midia {
 
 	@Override
 	public String toString() {
-		return super.toString()+ " | Duração: " + duracao + "min" +
-				" | Locação: "+ calculaLocacao() + " Reais." ;
+		return super.toString()+ "," + duracao +
+				","+ calculaLocacao();
 	}
 
 }
