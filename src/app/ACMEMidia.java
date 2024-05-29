@@ -33,8 +33,8 @@ public class ACMEMidia {
         //exibeDadosDuracao();//Done
         removeMidia();//Done
         somatorioLocacoes();//Done
-        exibeDadosMusicaLocacaoMedia();//
-        exibeDadosMidiaNova();//
+        exibeDadosMusicaLocacaoMedia();//Done
+        exibeDadosMidiaNova();//Done
     }
     public void cadastraVideo() {
         var codigo = in.nextInt();
