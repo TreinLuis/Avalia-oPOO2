@@ -12,9 +12,9 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ACMEMidia {
-    private PrintStream saidaPadrao = System.out;   // Guarda a saida padrao - tela (console)
-    private  String nomeArquivoEntrada = "entrada (1).txt";  // Nome do arquivo de entrada de dados
-    private  String nomeArquivoSaida = "dadosout.txt";  // Nome do arquivo de
+    private PrintStream saidaPadrao = System.out;
+    private  String nomeArquivoEntrada = "entrada (2).txt";
+    private  String nomeArquivoSaida = "dadosout.txt";
     private Scanner in = new Scanner(System.in);
 
     private Midiateca midiateca;
@@ -33,27 +33,21 @@ public class ACMEMidia {
         //exibeDadosDuracao();//Done
         removeMidia();//Done
         somatorioLocacoes();//Done
-        exibeDadosMusicaLocacaoMedia();//To_Do
-        exibeDadosMidiaNova();//To_Do
+        exibeDadosMusicaLocacaoMedia();//
+        exibeDadosMidiaNova();//
     }
     public void cadastraVideo() {
         var codigo = in.nextInt();
         in.nextLine();
 
         while (codigo != -1) {
-            //System.out.println("Digite o código do vídeo: ");
-
-            //System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            //System.out.println("Digite o ano de lançamento do vídeo: ");
             int ano = in.nextInt();
             in.nextLine();
 
-            //System.out.println("Digite a categoria do vídeo: ");
             Categoria categoria = categoria();
 
-            //System.out.println("Digite a qualidade da imagem do vídeo: ");
             int qualidade = in.nextInt();
 
             Video v = new Video(codigo, titulo, ano, categoria, qualidade);
@@ -63,7 +57,6 @@ public class ACMEMidia {
                 System.out.println("1:" + codigo + "," + titulo + "," +
                         ano + "," + categoria.getNome() + "," + qualidade);
             }
-           // System.out.println("Caso não queira mais adicionar musíca digite -1! ");
             codigo = in.nextInt();
             in.nextLine();
 
@@ -77,16 +70,13 @@ public class ACMEMidia {
 
         while (codigo != -1) {
 
-            //System.out.println("Digite o título: ");
             String titulo = in.nextLine();
 
-            //System.out.println("Digite o ano de lançamento da musíca: ");
             int ano = in.nextInt();
             in.nextLine();
 
             Categoria categoria = categoria();
 
-            //System.out.println("Digite a duração da musíca: ");
             double duracao = in.nextDouble();
             in.nextLine();
 
@@ -97,7 +87,6 @@ public class ACMEMidia {
                 System.out.println("2:" + codigo + "," + titulo + "," +
                         ano + "," + categoria.getNome() + "," + duracao);
             }
-            //System.out.println("Caso não queira mais adicionar musíca digite -1! ");
             codigo = in.nextInt();
             in.nextLine();
         }
@@ -105,7 +94,6 @@ public class ACMEMidia {
 
     public void exibeDadosMidia() {
         Midia m;
-        //System.out.println("Digite o código da mídia:");
         int codigo = in.nextInt();
         in.nextLine();
         m = midiateca.consultaCodigo(codigo);
@@ -120,7 +108,6 @@ public class ACMEMidia {
     public void exibeDadosCategoria() {
         List<Midia> midiasCategoria;
 
-        //System.out.println("Digite a categoria da mídia par aobter os dados: ");
         Categoria categoria = categoria();
         midiasCategoria = midiateca.consultaPorCategoria(categoria);
         if (midiasCategoria.isEmpty()) {
@@ -141,7 +128,6 @@ public class ACMEMidia {
     public void exibeDadosQualidade() {
         List<Midia> midiasQualidade;
 
-        //System.out.println("Digite a qualidade do vídeo par aobter os dados:");
         int qualidade = in.nextInt();
         in.nextLine();
         midiasQualidade = midiateca.consultaGeneralizada(Midia.class, qualidade);
@@ -157,7 +143,6 @@ public class ACMEMidia {
     public void exibeDadosDuracao() {
         List<Midia> midiasDuracao;
 
-        //System.out.println("Digite a duração da musíca para aobter os dados:");
         double duracao = in.nextDouble();
         System.out.println(duracao);
         //in.nextLine();
@@ -172,7 +157,6 @@ public class ACMEMidia {
     }
 
     public void removeMidia() {
-        //System.out.println("Digite o código da mídia");
         int codigo = in.nextInt();
         in.nextLine();
         Midia m = midiateca.consultaCodigo(codigo);
@@ -237,36 +221,19 @@ public class ACMEMidia {
         return categoria;
     }
 
-    public Number defineAtributo(String entrada) {
-        Number atributo;
-
-        try {
-            atributo = Integer.parseInt(entrada);
-        } catch (NumberFormatException e1) {
-            try {
-                atributo = Double.parseDouble(entrada);
-            } catch (NumberFormatException e2) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                atributo = null;
-            }
-        }
-        return atributo;
-    }
     private void redirecionaES() {
         try {
             BufferedReader streamEntrada = new BufferedReader(new FileReader(nomeArquivoEntrada));
-            in = new Scanner(streamEntrada);   // Usa como entrada um arquivo
+            in = new Scanner(streamEntrada);
             PrintStream streamSaida = new PrintStream(new File(nomeArquivoSaida), Charset.forName("UTF-8"));
-            System.setOut(streamSaida);             // Usa como saida um arquivo
+            System.setOut(streamSaida);
         } catch (Exception e) {
             System.out.println(e);
         }
-        Locale.setDefault(Locale.ENGLISH);   // Ajusta para ponto decimal
-        in.useLocale(Locale.ENGLISH);   // Ajusta para leitura para ponto decimal
+        Locale.setDefault(Locale.ENGLISH);
+        in.useLocale(Locale.ENGLISH);
     }
 
-    // Restaura E/S padrao de tela(console)/teclado
-    // Chame este metodo para retornar a leitura e escrita de dados para o padrao
     private void restauraES() {
         System.setOut(saidaPadrao);
         in = new Scanner(System.in);
