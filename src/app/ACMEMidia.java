@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class ACMEMidia {
     private PrintStream saidaPadrao = System.out;
-    private  String nomeArquivoEntrada = "entrada (2).txt";
+    private  String nomeArquivoEntrada = "entrada.txt";
     private  String nomeArquivoSaida = "dadosout.txt";
     private Scanner in = new Scanner(System.in);
 
@@ -30,7 +30,7 @@ public class ACMEMidia {
         exibeDadosMidia();//Done
         exibeDadosCategoria();//Done
         exibeDadosQualidade();//Done
-        //exibeDadosDuracao();//Done
+        exibeDadosDuracao();//Done
         removeMidia();//Done
         somatorioLocacoes();//Done
         exibeDadosMusicaLocacaoMedia();//Done
@@ -141,18 +141,11 @@ public class ACMEMidia {
     }
 
     public void exibeDadosDuracao() {
-        List<Midia> midiasDuracao;
-
-        double duracao = in.nextDouble();
-        System.out.println(duracao);
-        //in.nextLine();
-        midiasDuracao = midiateca.consultaGeneralizada(Midia.class, duracao);
-        if (midiasDuracao.isEmpty()) {
+        Musica maiorDuracao = (Musica) midiateca.maiorDuracao();
+        if (maiorDuracao == null) {
             System.out.println("6:Nenhuma música encontrada.");
         } else {
-            for (Midia m : midiasDuracao) {
-                System.out.println("6:" + m.toString());
-            }
+                System.out.println("6:" + maiorDuracao.getTitulo() + "," + maiorDuracao.getDuracao());
         }
     }
 
