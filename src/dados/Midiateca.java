@@ -9,8 +9,6 @@ public class Midiateca implements Iterador {
     private int contador;
     private List<Midia> listaMidias;
 
-    private Collection<Midia> midia;
-
     public Midiateca() {
         this.contador = 0;
         listaMidias = new ArrayList<>();
@@ -121,7 +119,7 @@ public class Midiateca implements Iterador {
      * @see Iterador#hasNext()
      */
     public boolean hasNext() {
-        return contador < midia.size();
+        return contador < listaMidias.size();
     }
 
 
