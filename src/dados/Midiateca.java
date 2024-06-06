@@ -2,6 +2,7 @@ package dados;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Midiateca implements Iterador {
@@ -22,21 +23,22 @@ public class Midiateca implements Iterador {
     }
 
     public Midia consultaCodigo(int codigo) {
-        for (Midia m : listaMidias) {
-            if (m.getCodigo() == codigo) {
-                return m;
-            }
+        Midia midia = listaMidias.stream()
+                .filter(m -> m.getCodigo() == codigo)
+                .findFirst()
+                .orElse(null);
+        if (midia != null) {
+            return midia;
+        } else {
+            return null;
         }
-        return null;
     }
-
     public List<Midia> consultaPorCategoria(Categoria categoria) {
         List<Midia> midias = new ArrayList<>();
-        for (Midia m : listaMidias) {
-            if (m.getCategoria().equals(categoria)) {
-                midias.add(m);
-            }
-        }
+        midias = listaMidias.stream()
+                .filter(m -> m.getCategoria().equals(categoria))
+                .toList();
+
         return midias;
     }
 
@@ -54,16 +56,11 @@ public class Midiateca implements Iterador {
         return result;
     }
     public Midia maiorDuracao() {
-        Musica maior = null;
-        for (Midia m : listaMidias) {
-            if (m instanceof Musica) {
-                Musica musica = (Musica) m;
-                if (maior == null || maior.getDuracao() < musica.getDuracao()) {
-                    maior = musica;
-                }
-            }
-        }
-        return maior;
+        return listaMidias.stream()
+                .filter(m -> m instanceof Musica)
+                .map(m -> (Musica) m)
+                .max(Comparator.comparing(Musica::getDuracao))
+                .orElse(null);
     }
 
     public Midia midiaMaisNova() {
@@ -87,10 +84,11 @@ public class Midiateca implements Iterador {
     }
 
     public double somatorioLocacoes() {
-        double somatorio = 0;
-        for (Midia m : listaMidias) {
-            somatorio += m.calculaLocacao();
-        }
+        double somatorio =  0;
+        somatorio = listaMidias.stream()
+                .mapToDouble(Midia::calculaLocacao)
+                .sum();
+
         return somatorio;
     }
 

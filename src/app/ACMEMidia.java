@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class ACMEMidia {
     private PrintStream saidaPadrao = System.out;
     private  String nomeArquivoEntrada = "entrada.txt";
-    private  String nomeArquivoSaida = "dadosout.txt";
+    private  String nomeArquivoSaida = "saida.txt";
     private Scanner in = new Scanner(System.in);
 
     private Midiateca midiateca;
@@ -52,7 +52,7 @@ public class ACMEMidia {
 
             Video v = new Video(codigo, titulo, ano, categoria, qualidade);
             if (!midiateca.cadastraMidia(v)) {
-                System.out.println(" 1:Erro-video com codigo repetido: " + codigo);
+                System.out.println("1:Erro-video com codigo repetido: " + codigo);
             } else {
                 System.out.println("1:" + codigo + "," + titulo + "," +
                         ano + "," + categoria.getNome() + "," + qualidade);
@@ -82,7 +82,7 @@ public class ACMEMidia {
 
             Musica m = new Musica(codigo, titulo, ano, categoria, duracao);
             if (!midiateca.cadastraMidia(m)) {
-                System.out.println(" 2:Erro-musica com codigo repetido: " + codigo);
+                System.out.println("2:Erro-musica com codigo repetido: " + codigo);
             } else {
                 System.out.println("2:" + codigo + "," + titulo + "," +
                         ano + "," + categoria.getNome() + "," + duracao);
@@ -208,7 +208,6 @@ public class ACMEMidia {
         try {
             categoria = Categoria.fromString(categoriaStr);
         } catch (IllegalArgumentException e) {
-            System.out.println("Categoria inválida!");
             return null;
         }
         return categoria;
